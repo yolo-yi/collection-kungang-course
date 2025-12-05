@@ -1,0 +1,21 @@
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #9e0b0f;
+    border-radius: 4px;
+}
+
+/* 隐藏所有板块，通过JS控制显示 */
+.page-section {
+    display: none;
+    min-height: 80vh;
+}
+.page-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
