@@ -1,4 +1,4 @@
-// === 1. 导航与页面切换逻辑 ===
+//导航与页面切换逻辑 
 function switchTab(tabId) {
     // 隐藏所有 section
     document.querySelectorAll('.page-section').forEach(section => {
@@ -148,4 +148,31 @@ function restartQuiz() {
     document.getElementById('result-area').classList.add('hidden');
     document.getElementById('question-area').classList.remove('hidden');
     loadQuestion();
+}
+
+// 简单的计数器动画 (针对首页年份)
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// 页面加载完成后触发
+window.onload = function() {
+    // 1. 初始化问答
+    loadQuestion();
+    
+    // 2. 首页年份数字动画
+    const counter = document.getElementById("year-counter");
+    if(counter) {
+        // 今年是2025，1958建校 = 67年
+        animateValue(counter, 0, 67, 2000);
+    }
 }
